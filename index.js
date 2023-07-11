@@ -3,7 +3,7 @@
 // console.log(document.querySelector('message').textContent='yes')
 const secretNumber = Math.trunc(Math.random()*20)+1;
 let score =20;
-document.querySelector(".number").textContent=secretNumber
+
 function eventClick(){
     const guess =Number(document.querySelector('.guess').value)
     console.log(typeof guess)
@@ -13,7 +13,10 @@ function eventClick(){
     }
     // when player wins
     else if(guess === secretNumber){
+        document.querySelector(".number").textContent=secretNumber
       document.querySelector('.message').textContent='correct number'
+      document.querySelector('body').style.backgroundColor='#60b347';
+      document.querySelector(".number").style.width ='30rem';
     }
     // when guess is too high
     else if(guess>secretNumber){
@@ -41,4 +44,13 @@ function eventClick(){
        
     }
 }
+// function to reset the game
+function resetGame(){
+    document.querySelector('.score').textContent=20;
+    document.querySelector('.guess').value=''
+    document.querySelector('.message').textContent='Start Guessing'
+    document.querySelector('body').style.backgroundColor='#222';
+    document.querySelector(".number").style.width ='15rem';
+}
 document.querySelector('.check').addEventListener('click',eventClick)
+document.querySelector(".again").addEventListener("click" , resetGame)
